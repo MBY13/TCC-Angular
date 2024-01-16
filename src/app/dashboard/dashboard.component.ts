@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,9 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  afazeresPendentes: string;
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -145,6 +149,22 @@ export class DashboardComponent implements OnInit {
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+
+      //A partir daqui é real oficial
+      this.getAfazeresPendentes().subscribe(
+        (response: Object) => {
+          // Lida com os dados aqui
+          var teste = JSON.stringify(response);
+          this.afazeresPendentes = teste;
+        },
+        (error) => {
+          console.error('Erro ao obter dados:', error);
+        }
+      );
+  }
+
+  getAfazeresPendentes(): Observable<Object> {
+    return this.http.get('https://localhost:7068/WeatherForecast/afazeres-pendentes')
   }
 
 }
