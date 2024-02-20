@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { DashboardService } from 'app/dashboard/dashboard.service';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-  ]
+  ],
+  providers: [DashboardService]
 })
 
 export class AdminLayoutModule {}
