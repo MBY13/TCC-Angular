@@ -1,29 +1,8 @@
 <div class="main-content">
   <div class="container-fluid">
-    <div class="card">
-        <div class="card-header card-header-danger">
-            <h4 class="card-title">Siga</h4>
-            <p class="card-category">Integração com a plataforma https://siga.udesc.br/</p>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="row">
-                    <div class="col-md-6">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Login" type="text">
-                    </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                        <mat-form-field>
-                          <mat-label>Senha</mat-label>
-                          <input matInput [type]="hide ? 'password' : 'text'">
-                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                          </button>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <app-card-integracao cor="danger" titulo="Siga" categoria="Integração com a plataforma https://siga.udesc.br/" enumIntegracao="1"></app-card-integracao>
+    <br>
+    <app-card-integracao cor="info" titulo="Teams" categoria="Integração com a plataforma https://www.microsoft.com/pt-br/microsoft-teams/log-in" enumIntegracao="2"></app-card-integracao>
+    <br>
+    <app-card-integracao cor="warning" titulo="Moodle" categoria="Integração com a plataforma https://www.moodle.udesc.br/my/" enumIntegracao="3"></app-card-integracao>
 </div>
