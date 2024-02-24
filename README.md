@@ -147,11 +147,11 @@ material-dashboard-angular
 │   │   │   ├── table-list.component.html
 │   │   │   ├── table-list.component.spec.ts
 │   │   │   └── table-list.component.ts
-│   │   ├── typography
-│   │   │   ├── typography.component.css
-│   │   │   ├── typography.component.html
-│   │   │   ├── typography.component.spec.ts
-│   │   │   └── typography.component.ts
+│   │   ├── Integracoes
+│   │   │   ├── Integracoes.component.css
+│   │   │   ├── Integracoes.component.html
+│   │   │   ├── Integracoes.component.spec.ts
+│   │   │   └── Integracoes.component.ts
 │   │   ├── upgrade
 │   │   │   ├── upgrade.component.css
 │   │   │   ├── upgrade.component.html
