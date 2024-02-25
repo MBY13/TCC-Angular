@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,14 +21,14 @@ export class CardIntegracaoComponent {
   senhaPreenchida: boolean = false;
   hide: boolean = true;
 
-  constructor(private http: HttpClient, private service: IntegracoesService) 
+
+  constructor(private http: HttpClient, private service: IntegracoesService, private snackBar: MatSnackBar) 
   {}
 
   login: string;
   senha: string;
   alunoId: string;
   faculdadeId: string;
-
 
   verificarPreenchimentoCampo(valor: string): boolean {
     return valor.trim().length > 0;
@@ -41,11 +43,13 @@ export class CardIntegracaoComponent {
     this.enumIntegracao = 1
 
     this.service.insertDadosLogin(this.login, this.senha, this.enumIntegracao, this.alunoId, this.faculdadeId).subscribe(
-      (response: Response) => {
-        console.log('Dados inseridos com sucesso:', response.ok);
-      },
-      (error) => {
-        console.error('Erro ao inserir dados:', error);
+      (response: any) => {
+        console.log(response)
+        if (response.statusCode == 201) {
+          this.snackBar.open('Dados inseridos com sucesso', 'Fechar', { duration: 3000 });
+        } else {
+          this.snackBar.open('Erro ao inserir dados', 'Fechar', { duration: 3000 });
+        }
       }
     );
   }

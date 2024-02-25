@@ -19,6 +19,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardService } from 'app/dashboard/dashboard.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
 
@@ -35,6 +36,7 @@ import { IntegracoesService } from 'app/integracoes/integracoes.service';
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    MatSnackBarModule,
   ],
   declarations: [
     DashboardComponent,
