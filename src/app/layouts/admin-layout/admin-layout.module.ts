@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardService } from 'app/dashboard/dashboard.service';
 import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
+import { IntegracoesService } from 'app/integracoes/integracoes.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-in
     NotificationsComponent,
     UpgradeComponent,
   ],
-  providers: [DashboardService]
+  providers: [DashboardService, IntegracoesService]
 })
 
 export class AdminLayoutModule {}
