@@ -151,7 +151,6 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
 
-      // A partir daqui é real oficial
       this.service.getAfazeresPendentes().subscribe(
         (response: Object) => {
           // Lida com os dados aqui
@@ -163,9 +162,5 @@ export class DashboardComponent implements OnInit {
         }
       );
   }
-
-  // getAfazeresPendentes(): Observable<Object> {
-  //   return this.http.get('https://localhost:7068/WeatherForecast/afazeres-pendentes')
-  // }
 
 }

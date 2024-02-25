@@ -6,7 +6,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
+import { IntegracoesComponent } from '../../integracoes/integracoes.component';
 import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
@@ -19,6 +19,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardService } from 'app/dashboard/dashboard.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
+import { IntegracoesService } from 'app/integracoes/integracoes.service';
 
 @NgModule({
   imports: [
@@ -33,18 +36,20 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    MatSnackBarModule,
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
-    TypographyComponent,
+    IntegracoesComponent,
+    CardIntegracaoComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
   ],
-  providers: [DashboardService]
+  providers: [DashboardService, IntegracoesService]
 })
 
 export class AdminLayoutModule {}
