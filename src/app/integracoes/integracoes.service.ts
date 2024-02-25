@@ -7,9 +7,18 @@ import { ApiRoutesHelpers } from "utils/api/api-routes.helpers";
 export class IntegracoesService{
     constructor(private http : HttpClient) {}
 
-    getAfazeresPendentes(): Observable<any> {
-        const relativeRoute = '/DashBoard/afazeres-pendentes';
-        var endpoint : string = ApiRoutesHelpers.GetAbsoluteRoute(relativeRoute);
-        return this.http.get(endpoint).pipe(catchError(error => throwError(error)));
-    }
+    insertDadosLogin(login: string, senha: string, tipoIntegracao: number, alunoId: string, faculdadeId: string): Observable<any> {
+        const AdicionarIntegracaoCommand = {
+          AlunoId: alunoId,
+          FaculdadeId: faculdadeId,
+          Login: login,
+          Senha: senha,
+          TipoIntegracao: tipoIntegracao
+        };
+        const relativeRoute = '/Integracoes';
+        const endpoint: string = ApiRoutesHelpers.GetAbsoluteRoute(relativeRoute);
+        return this.http.post(endpoint, AdicionarIntegracaoCommand).pipe(
+          catchError(error => throwError(error))
+        );
+      }
 }
