@@ -22,6 +22,7 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { IntegracoesService } from 'app/integracoes/integracoes.service';
     MatTooltipModule,
     MatIconModule,
     MatSnackBarModule,
+    MatTableModule,
   ],
   declarations: [
     DashboardComponent,

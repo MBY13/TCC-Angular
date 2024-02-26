@@ -3,3 +3,8 @@ th, td {
     vertical-align: middle; /*Alinha verticalmente ao centro*/
     padding-left: 0%;
   }
+
+.table {
+    background-color: transparent;
+}
+  
