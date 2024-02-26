@@ -1,0 +1,5 @@
+th, td {
+    text-align: left; /* Alinha o conteúdo no centro */
+    vertical-align: middle; /*Alinha verticalmente ao centro*/
+    padding-left: 0%;
+  }
