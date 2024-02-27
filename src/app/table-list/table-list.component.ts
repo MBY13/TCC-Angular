@@ -27,9 +27,9 @@ export class TableListComponent implements OnInit {
     { ID: 1, Avaliacao: 'Avaliação 1', Data: new Date('2023-05-02'), Conteudo: '1 Introdução 1.1 Apresentação da disciplina 1.2...', Nota: 6.4  ,Disciplina: 'Sistemas Interligados De Gestão' },
     { ID: 2, Avaliacao: 'Trabalho 1', Data: new Date('2023-06-20'), Conteudo:  '6 Sistemas ERP - Enterprise Resources Planning ...', Nota: 10.0 ,Disciplina: 'Sistemas Interligados De Gestão' },
     { ID: 3, Avaliacao: 'Avaliação 2', Data: new Date('2023-06-27'), Conteudo: '5 MRP II - Manufacturing Resources Planning 5.1...', Nota: 10.0 ,Disciplina: 'Sistemas Interligados De Gestão' },
-    { ID: 3, Avaliacao: 'Avaliação 1', Data: new Date('2023-03-31'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' },
-    { ID: 3, Avaliacao: 'Avaliação 2', Data: new Date('2023-05-26'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 9.8 ,Disciplina: 'Gestão do Conhecimento' },
-    { ID: 3, Avaliacao: 'Comunidade de práticas', Data: new Date('2023-06-30'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' }
+    { ID: 4, Avaliacao: 'Avaliação 1', Data: new Date('2023-03-31'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' },
+    { ID: 5, Avaliacao: 'Avaliação 2', Data: new Date('2023-05-26'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 9.8 ,Disciplina: 'Gestão do Conhecimento' },
+    { ID: 6, Avaliacao: 'Comunidade de práticas', Data: new Date('2023-06-30'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' }
   ];
 
   NotasResumidas: NotasResumidasList[] = [
@@ -70,10 +70,10 @@ export class TableListComponent implements OnInit {
     console.log('Disciplina clicada:', row.Disciplina); // Mensagem de log para verificar
   }
 
-  resetarTabelaDetalhada() {
-    this.filteredNotasDetalhadas = [];
-    this.mostrarTabelaDetalhada = true;
-  }
+  // resetarTabelaDetalhada() {
+  //   this.filteredNotasDetalhadas = [];
+  //   this.mostrarTabelaDetalhada = true;
+  // }
     // Função para verificar se a linha está selecionada
   isRowSelected(row: NotasResumidasList) {
     return this.clickedRow === row;

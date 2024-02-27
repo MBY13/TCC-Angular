@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-rose">
                         <h4 class="card-title">Notas Siga</h4>
                         <p class="card-category"> Disciplinas do siga</p>
                     </div>
-                    <div class="card-body">
+                    <div class="cor-rosa card-body">
                         <div class="table-responsive">
                             <table class="table table-hover" mat-table [dataSource]="NotasResumidas" >
                                 <!-- ID -->
@@ -51,7 +51,7 @@
 
             <div class="col-md-12">
                 <div class="card card-plain" *ngIf="mostrarTabelaDetalhada && filteredNotasDetalhadas.length > 0">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-rose">
                         <h4 class="card-title mt-0">Detalhamento Siga</h4>
                         <p class="card-category">Detalhamento de Notas do Siga </p>
                     </div>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="!mostrarTabelaDetalhada || filteredNotasDetalhadas.length === 0" class="alert alert-info">
+                <div *ngIf="!mostrarTabelaDetalhada || filteredNotasDetalhadas.length === 0" class="alert alert-info" style="background-color: #323232;">
                     Não há notas detalhadas disponíveis para esta disciplina.
                 </div>
             </div>
