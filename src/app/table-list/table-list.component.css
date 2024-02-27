@@ -8,3 +8,6 @@ th, td {
     background-color: transparent;
 }
   
+.selected-row {
+  font-weight: bold;
+}

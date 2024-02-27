@@ -42,7 +42,7 @@
                               
                                 <!-- Definindo as colunas -->
                                 <tr mat-header-row *matHeaderRowDef="['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado']"></tr>
-                                <tr mat-row *matRowDef="let row; columns: ['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado'];"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado'];" (click)="filtrarDetalhes(row)" [class.selected-row]="isRowSelected(row)"></tr>
                             </table>
                         </div>
                     </div>
@@ -50,14 +50,14 @@
             </div>
 
             <div class="col-md-12">
-                <div class="card card-plain" *ngIf="mostrarTabelaDetalhada">
+                <div class="card card-plain" *ngIf="mostrarTabelaDetalhada && filteredNotasDetalhadas.length > 0">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title mt-0">Detalhamento Siga</h4>
                         <p class="card-category">Detalhamento de Notas do Siga </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover" mat-table [dataSource]="NotasDetalhadas" >
+                            <table class="table table-hover" mat-table [dataSource]="filteredNotasDetalhadas" >
                                 <!-- ID -->
                                 <ng-container matColumnDef="ID" >
                                   <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>ID</strong> </th>
@@ -94,6 +94,9 @@
                             </table>
                         </div>
                     </div>
+                </div>
+                <div *ngIf="!mostrarTabelaDetalhada || filteredNotasDetalhadas.length === 0" class="alert alert-info">
+                    Não há notas detalhadas disponíveis para esta disciplina.
                 </div>
             </div>
         </div>
