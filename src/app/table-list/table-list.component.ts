@@ -20,9 +20,15 @@ export class TableListComponent implements OnInit {
     { ID: 3, Avaliacao: 'Avaliação 2', Data: new Date('2023-06-27'), Conteudo: '5 MRP II - Manufacturing Resources Planning 5.1...', Nota: 10.0  }
   ];
 
+  mostrarTabelaDetalhada: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleTabela() {
+    this.mostrarTabelaDetalhada = !this.mostrarTabelaDetalhada;
   }
 
 }
