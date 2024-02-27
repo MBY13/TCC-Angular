@@ -9,65 +9,46 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead class="text-primary">
-                                    <th>ID</th>
-                                    <th>Disciplina</th>
-                                    <th>Nota</th>
-                                    <th>Frequência</th>
-                                    <th>Resultado</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="text-primary">Sistemas Interligados De Gestão</td>
-                                        <td>8,8</td>
-                                        <td>100.00%</td>
-                                        <td >Aprovado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td class="text-primary">Gestão do Conhecimento</td>
-                                        <td>9,9</td>
-                                        <td>88.89%</td>
-                                        <td>Aprovado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td class="text-primary">Gerência de Redes de Computadores</td>
-                                        <td>9,0</td>
-                                        <td>100.00%</td>
-                                        <td>Aprovado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td class="text-primary">Sistemas de Apoio à Decisão</td>
-                                        <td>9,5</td>
-                                        <td>94.44%</td>
-                                        <td>Aprovado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5 </td>
-                                        <td class="text-primary">Sistemas de Informações Geográficas</td>
-                                        <td>8,7</td>
-                                        <td>100.00%</td>
-                                        <td>Aprovado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td class="text-primary">Trabalho de Conclusão de Curso I</td>
-                                        <td>7,0</td>
-                                        <td>100.00%</td>
-                                        <td>Aprovado</td>
-                                    </tr>
-                                </tbody>
+                            <table class="table table-hover" mat-table [dataSource]="NotasResumidas" >
+                                <!-- ID -->
+                                <ng-container matColumnDef="ID" >
+                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>ID</strong> </th>
+                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.ID }} </td>
+                                </ng-container>
+                              
+                                <!-- Disciplina -->
+                                <ng-container matColumnDef="Disciplina">
+                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>Disciplina</strong> </th>
+                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.Disciplina }} </td>
+                                </ng-container>
+                              
+                                <!-- Nota -->
+                                <ng-container matColumnDef="Nota">
+                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>Nota</strong> </th>
+                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.Nota | number:'1.2-2' }} </td>
+                                </ng-container>
+                              
+                                <!-- Frequência -->
+                                <ng-container matColumnDef="Frequencia">
+                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>Frequência</strong> </th>
+                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.Frequencia | number:'1.2-2' }}%</td>
+                                </ng-container>
+                              
+                                <!-- Resultado -->
+                                <ng-container matColumnDef="Resultado">
+                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>Resultado</strong> </th>
+                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.Resultado}} </td>
+                                </ng-container>
+                              
+                                <!-- Definindo as colunas -->
+                                <tr mat-header-row *matHeaderRowDef="['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado']"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado'];"></tr>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
             <div class="col-md-12">
                 <div class="card card-plain" *ngIf="mostrarTabelaDetalhada">
                     <div class="card-header card-header-danger">
