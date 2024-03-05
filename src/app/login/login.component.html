@@ -1,0 +1,28 @@
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>BotU - Login</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form (ngSubmit)="submitLoginForm()">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Login" name="login" [(ngModel)]="login">
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Senha" name="senha" [(ngModel)]="senha">
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit" class="login-button">Login</button>
+          <button mat-button color="warn" class="forgot-password">Esqueceu a Senha</button>
+          <button mat-button color="accent" class="create-account">Criar Cadastro</button>
+          
+          <div *ngIf="erroLogin" class="error-message">
+            Login ou senha inválidos.
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
