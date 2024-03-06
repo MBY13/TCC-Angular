@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Curso } from './notas-list.models';
+import { Curso, Semestres } from './notas-list.models';
 import { NotasListService } from './notas-list.service';
 
 export interface NotasDetalhadasList {
@@ -44,13 +44,15 @@ export class TableListComponent implements OnInit {
   clickedRow: NotasResumidasList | undefined;
 
   curso: Curso;
-  idAluno: string = 'e14a8cc9-d355-11ee-81ef-02502f3d9bd5' // Defina o ID do aluno aqui, ou receba de alguma outra fonte
+  semestres: Semestres; 
+  CursoID: string;
+  idAluno: string = 'e14a8cc9-d355-11ee-81ef-02502f3d9bd5' // vira Global no inicio da aplicação 
 
 
   constructor(private notasListService: NotasListService) { }
 
   ngOnInit() {
-    this.carregarNotas();
+    this.carregarCurso();
   }
 
   toggleTabela() {
@@ -76,16 +78,29 @@ export class TableListComponent implements OnInit {
     return this.clickedRow === row;
   }
 
-  private carregarNotas() {
+  private carregarCurso() {
     this.notasListService.getCurso(this.idAluno).subscribe(
       (data: Curso) => {
         this.curso = data;
-        console.log(this.curso); // Aqui você tem acesso aos dados do curso
+        this.CursoID = this.curso.result[0].id;
+        console.log(this.CursoID); // Aqui você tem acesso aos dados do curso
+        this.carregaSemestre();
       },
       (error) => {
-        console.error('Erro ao obter notas detalhadas:', error);
+        console.error('Erro ao obter Curso:', error);
       }
     );
   }
-
+  private carregaSemestre() {
+    this.notasListService.getSemestres(this.idAluno, this.CursoID).subscribe(
+      (data: Semestres) => {
+        this.semestres = data;
+        // this.CursoID = this.curso.result[0].id;
+        console.log('Semestres:', this.semestres); // Mostra o objeto Semestres completo no console
+      },
+      (error) => {
+        console.error('Erro ao obter Semestres:', error);
+      }
+    );
+  }
 }
