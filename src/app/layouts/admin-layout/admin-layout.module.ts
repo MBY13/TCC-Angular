@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
 import { MatTableModule } from '@angular/material/table';
+import { NotasListService } from 'app/notas-list/notas-list.service';
 
 @NgModule({
   imports: [
@@ -51,7 +52,7 @@ import { MatTableModule } from '@angular/material/table';
     NotificationsComponent,
     UpgradeComponent,
   ],
-  providers: [DashboardService, IntegracoesService]
+  providers: [DashboardService, IntegracoesService,NotasListService]
 })
 
 export class AdminLayoutModule {}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Curso } from './notas-list.models';
+import { NotasListService } from './notas-list.service';
 
 export interface NotasDetalhadasList {
   ID: number;
@@ -41,9 +43,14 @@ export class TableListComponent implements OnInit {
   filteredNotasDetalhadas: NotasDetalhadasList[] = [];
   clickedRow: NotasResumidasList | undefined;
 
-  constructor() { }
+  curso: Curso;
+  idAluno: string = 'e14a8cc9-d355-11ee-81ef-02502f3d9bd5' // Defina o ID do aluno aqui, ou receba de alguma outra fonte
+
+
+  constructor(private notasListService: NotasListService) { }
 
   ngOnInit() {
+    this.carregarNotas();
   }
 
   toggleTabela() {
@@ -51,11 +58,6 @@ export class TableListComponent implements OnInit {
   }
 
   filtrarDetalhes(row: NotasResumidasList) {
-    // if (this.clickedRow === row) {
-    //   this.clickedRow = undefined;
-    //   this.resetarTabelaDetalhada();
-    //   return;
-    // }
 
     this.clickedRow = row;
 
@@ -70,12 +72,20 @@ export class TableListComponent implements OnInit {
     console.log('Disciplina clicada:', row.Disciplina); // Mensagem de log para verificar
   }
 
-  // resetarTabelaDetalhada() {
-  //   this.filteredNotasDetalhadas = [];
-  //   this.mostrarTabelaDetalhada = true;
-  // }
-    // Função para verificar se a linha está selecionada
   isRowSelected(row: NotasResumidasList) {
     return this.clickedRow === row;
   }
+
+  private carregarNotas() {
+    this.notasListService.getCurso(this.idAluno).subscribe(
+      (data: Curso) => {
+        this.curso = data;
+        console.log(this.curso); // Aqui você tem acesso aos dados do curso
+      },
+      (error) => {
+        console.error('Erro ao obter notas detalhadas:', error);
+      }
+    );
+  }
+
 }
