@@ -17,9 +17,9 @@ export interface NotasResumidasList {
 }
 
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-notas-list',
+  templateUrl: './notas-list.component.html',
+  styleUrls: ['./notas-list.component.css']
 })
 
 export class TableListComponent implements OnInit {
