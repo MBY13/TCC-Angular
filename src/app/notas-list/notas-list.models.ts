@@ -72,6 +72,7 @@ export interface NotasResumidasList {
   Nota: number;
   Frequencia: number;
   Resultado: string;
+  ID_Semestre: string;
 }
 
 export interface NotasDetalhadasList {

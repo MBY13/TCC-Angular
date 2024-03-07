@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Curso, Semestres, Disciplina, NotasResumidasList, NotasDetalhadasList} from './notas-list.models';
 import { NotasListService } from './notas-list.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-notas-list',
@@ -26,6 +27,7 @@ export class TableListComponent implements OnInit {
   CursoID: string;
   idAluno: string = 'e14a8cc9-d355-11ee-81ef-02502f3d9bd5' // vira Global no inicio da aplicação 
 
+  @ViewChild('filtroDisciplinas') filtroDisciplinas: MatSelect;
 
   constructor(private notasListService: NotasListService) { }
 
@@ -74,7 +76,8 @@ export class TableListComponent implements OnInit {
             Disciplina: disciplina.nome,
             Nota: disciplina.media,
             Frequencia: disciplina.frequencia,
-            Resultado: this.obterResultado(disciplina.resultado) // Função para obter o resultado com base no código
+            Resultado: this.obterResultado(disciplina.resultado), // Função para obter o resultado com base no código
+            ID_Semestre: semestreId
           };
 
         // Adicionando a nova nota à lista NotasResumidas
@@ -135,6 +138,20 @@ export class TableListComponent implements OnInit {
 
   isRowSelected(row: NotasResumidasList) {
     return this.clickedRow === row;
+  }
+
+  filtrarPorDisciplina(event: any) {
+    const valorSelecionado = event.value;
+    this.dataSourceResumida.filter = valorSelecionado;
+
+    if (this.dataSourceResumida.paginator) {
+      this.dataSourceResumida.paginator.firstPage();
+    }
+  }
+
+  limparFiltro() {
+    this.filtroDisciplinas.value = null;
+    this.dataSourceResumida.filter = '';
   }
   
 }
