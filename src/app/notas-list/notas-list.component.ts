@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Curso, Semestres } from './notas-list.models';
+import { Curso, Semestres, Disciplina} from './notas-list.models';
 import { NotasListService } from './notas-list.service';
 
 export interface NotasDetalhadasList {
@@ -45,6 +45,7 @@ export class TableListComponent implements OnInit {
 
   curso: Curso;
   semestres: Semestres; 
+  disciplina: Disciplina;
   CursoID: string;
   idAluno: string = 'e14a8cc9-d355-11ee-81ef-02502f3d9bd5' // vira Global no inicio da aplicação 
 
@@ -95,11 +96,28 @@ export class TableListComponent implements OnInit {
     this.notasListService.getSemestres(this.idAluno, this.CursoID).subscribe(
       (data: Semestres) => {
         this.semestres = data;
-        // this.CursoID = this.curso.result[0].id;
         console.log('Semestres:', this.semestres); // Mostra o objeto Semestres completo no console
+  
+        // Itera sobre cada semestre
+        this.semestres.result.forEach((semestre) => {
+          // Para cada semestre, chama a função para obter as disciplinas
+          this.getDisciplinas(semestre.id);
+        });
       },
       (error) => {
         console.error('Erro ao obter Semestres:', error);
+      }
+    );
+  }
+  private getDisciplinas(semestreId: string) {
+    this.notasListService.getDisciplina(this.idAluno, semestreId).subscribe(
+      (data: Disciplina) => {
+        // Aqui você tem acesso às disciplinas do semestre
+        console.log(`Disciplinas do semestre ${semestreId}:`, data);
+        // Faça o que for necessário com as disciplinas, como armazenar em uma variável, etc.
+      },
+      (error) => {
+        console.error(`Erro ao obter Disciplinas do semestre ${semestreId}:`, error);
       }
     );
   }
