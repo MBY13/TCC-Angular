@@ -65,3 +65,20 @@ export interface Disciplina {
   asyncState: any;
   isFaulted: boolean;
 }
+
+export interface NotasResumidasList {
+  ID: string;
+  Disciplina: string;
+  Nota: number;
+  Frequencia: number;
+  Resultado: string;
+}
+
+export interface NotasDetalhadasList {
+  ID: string;
+  Avaliacao: String;
+  Data: Date;
+  Conteudo: String;
+  Nota: number;
+  Disciplina: string;
+}

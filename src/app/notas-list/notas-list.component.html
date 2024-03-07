@@ -9,12 +9,7 @@
                     </div>
                     <div class="cor-rosa card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover" mat-table [dataSource]="NotasResumidas" >
-                                <!-- ID -->
-                                <ng-container matColumnDef="ID" >
-                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>ID</strong> </th>
-                                  <td mat-cell *matCellDef="let NotasResumidas"> {{ NotasResumidas.ID }} </td>
-                                </ng-container>
+                            <table class="table table-hover" mat-table [dataSource]="dataSourceResumida" >
                               
                                 <!-- Disciplina -->
                                 <ng-container matColumnDef="Disciplina">
@@ -41,8 +36,8 @@
                                 </ng-container>
                               
                                 <!-- Definindo as colunas -->
-                                <tr mat-header-row *matHeaderRowDef="['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado']"></tr>
-                                <tr mat-row *matRowDef="let row; columns: ['ID', 'Disciplina', 'Nota', 'Frequencia', 'Resultado'];" (click)="filtrarDetalhes(row)" [class.selected-row]="isRowSelected(row)"></tr>
+                                <tr mat-header-row *matHeaderRowDef="['Disciplina', 'Nota', 'Frequencia', 'Resultado']"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['Disciplina', 'Nota', 'Frequencia', 'Resultado'];" (click)="filtrarDetalhes(row)" [class.selected-row]="isRowSelected(row)"></tr>
                             </table>
                         </div>
                     </div>
@@ -58,11 +53,6 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover" mat-table [dataSource]="filteredNotasDetalhadas" >
-                                <!-- ID -->
-                                <ng-container matColumnDef="ID" >
-                                  <th mat-header-cell *matHeaderCellDef class="text-primary"> <strong>ID</strong> </th>
-                                  <td mat-cell *matCellDef="let NotasDetalhadas"> {{ NotasDetalhadas.ID }} </td>
-                                </ng-container>
                               
                                 <!-- Avaliação -->
                                 <ng-container matColumnDef="Avaliacao">
@@ -89,8 +79,8 @@
                                 </ng-container>
                               
                                 <!-- Definindo as colunas -->
-                                <tr mat-header-row *matHeaderRowDef="['ID', 'Avaliacao', 'Data', 'Conteudo', 'Nota']"></tr>
-                                <tr mat-row *matRowDef="let row; columns: ['ID', 'Avaliacao', 'Data', 'Conteudo', 'Nota'];"></tr>
+                                <tr mat-header-row *matHeaderRowDef="['Avaliacao', 'Data', 'Conteudo', 'Nota']"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['Avaliacao', 'Data', 'Conteudo', 'Nota'];"></tr>
                             </table>
                         </div>
                     </div>

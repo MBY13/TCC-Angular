@@ -1,22 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Curso, Semestres, Disciplina} from './notas-list.models';
+import { Curso, Semestres, Disciplina, NotasResumidasList, NotasDetalhadasList} from './notas-list.models';
 import { NotasListService } from './notas-list.service';
-
-export interface NotasDetalhadasList {
-  ID: number;
-  Avaliacao: String;
-  Data: Date;
-  Conteudo: String;
-  Nota: number;
-  Disciplina: string;
-}
-export interface NotasResumidasList {
-  ID: number;
-  Disciplina: string;
-  Nota: number;
-  Frequencia: number;
-  Resultado: string;
-}
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-notas-list',
@@ -25,24 +10,16 @@ export interface NotasResumidasList {
 })
 
 export class TableListComponent implements OnInit {
-  NotasDetalhadas: NotasDetalhadasList[] = [
-    { ID: 1, Avaliacao: 'Avaliação 1', Data: new Date('2023-05-02'), Conteudo: '1 Introdução 1.1 Apresentação da disciplina 1.2...', Nota: 6.4  ,Disciplina: 'Sistemas Interligados De Gestão' },
-    { ID: 2, Avaliacao: 'Trabalho 1', Data: new Date('2023-06-20'), Conteudo:  '6 Sistemas ERP - Enterprise Resources Planning ...', Nota: 10.0 ,Disciplina: 'Sistemas Interligados De Gestão' },
-    { ID: 3, Avaliacao: 'Avaliação 2', Data: new Date('2023-06-27'), Conteudo: '5 MRP II - Manufacturing Resources Planning 5.1...', Nota: 10.0 ,Disciplina: 'Sistemas Interligados De Gestão' },
-    { ID: 4, Avaliacao: 'Avaliação 1', Data: new Date('2023-03-31'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' },
-    { ID: 5, Avaliacao: 'Avaliação 2', Data: new Date('2023-05-26'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 9.8 ,Disciplina: 'Gestão do Conhecimento' },
-    { ID: 6, Avaliacao: 'Comunidade de práticas', Data: new Date('2023-06-30'), Conteudo: 'O conhecimento nas organizações. A economia do ...', Nota: 10.0 ,Disciplina: 'Gestão do Conhecimento' }
-  ];
+  dataSourceDetalhada = new MatTableDataSource<NotasDetalhadasList>([]);
+  NotasDetalhadas: NotasDetalhadasList[] = []
+  
+  dataSourceResumida = new MatTableDataSource<NotasResumidasList>([]);
+  NotasResumidas: NotasResumidasList[] = [];
 
-  NotasResumidas: NotasResumidasList[] = [
-    { ID: 1, Disciplina: 'Sistemas Interligados De Gestão'  , Nota: 8.8, Frequencia: 100.00   , Resultado: 'Aprovado' },
-    { ID: 2, Disciplina: 'Gestão do Conhecimento'           , Nota: 9.9, Frequencia: 88.89    , Resultado: 'Aprovado' },
-    { ID: 3, Disciplina: 'Gerência de Redes de Computadores', Nota: 9.0, Frequencia: 100.00   , Resultado: 'Aprovado' }
-  ];
   mostrarTabelaDetalhada: boolean = true;
   filteredNotasDetalhadas: NotasDetalhadasList[] = [];
   clickedRow: NotasResumidasList | undefined;
-
+  
   curso: Curso;
   semestres: Semestres; 
   disciplina: Disciplina;
@@ -54,29 +31,6 @@ export class TableListComponent implements OnInit {
 
   ngOnInit() {
     this.carregarCurso();
-  }
-
-  toggleTabela() {
-    this.mostrarTabelaDetalhada = !this.mostrarTabelaDetalhada;
-  }
-
-  filtrarDetalhes(row: NotasResumidasList) {
-
-    this.clickedRow = row;
-
-    this.filteredNotasDetalhadas = this.NotasDetalhadas.filter(det => det.Disciplina === row.Disciplina);
-
-    if (this.filteredNotasDetalhadas.length === 0) {
-      this.mostrarTabelaDetalhada = false;
-    } else {
-      this.mostrarTabelaDetalhada = true;
-    }
-
-    console.log('Disciplina clicada:', row.Disciplina); // Mensagem de log para verificar
-  }
-
-  isRowSelected(row: NotasResumidasList) {
-    return this.clickedRow === row;
   }
 
   private carregarCurso() {
@@ -112,13 +66,75 @@ export class TableListComponent implements OnInit {
   private getDisciplinas(semestreId: string) {
     this.notasListService.getDisciplina(this.idAluno, semestreId).subscribe(
       (data: Disciplina) => {
-        // Aqui você tem acesso às disciplinas do semestre
         console.log(`Disciplinas do semestre ${semestreId}:`, data);
-        // Faça o que for necessário com as disciplinas, como armazenar em uma variável, etc.
+        data.result.forEach((disciplina) => {
+          // Criando um objeto NotasResumidasList a partir dos dados da disciplina
+          const notaResumida: NotasResumidasList = {
+            ID: disciplina.id,
+            Disciplina: disciplina.nome,
+            Nota: disciplina.media,
+            Frequencia: disciplina.frequencia,
+            Resultado: this.obterResultado(disciplina.resultado) // Função para obter o resultado com base no código
+          };
+
+        // Adicionando a nova nota à lista NotasResumidas
+        this.NotasResumidas.push(notaResumida);
+
+        disciplina.avaliacoes.forEach((avaliacao) => {
+         const notasDetalhadas: NotasDetalhadasList = {
+            ID: avaliacao.id,
+            Avaliacao: avaliacao.nome,
+            Data: avaliacao.dataEntrega,
+            Conteudo: avaliacao.conteudo,
+            Nota: avaliacao.nota,
+            Disciplina: disciplina.id
+         } 
+        this.NotasDetalhadas.push(notasDetalhadas)
+        });
+      });
+      this.dataSourceResumida.data = this.NotasResumidas;
+      console.log('NotasResumidas atualizadas:', this.NotasResumidas);
+
+      this.dataSourceDetalhada.data = this.NotasDetalhadas;
+      console.log('NotasDetalhadas atualizadas:', this.NotasDetalhadas);
       },
       (error) => {
         console.error(`Erro ao obter Disciplinas do semestre ${semestreId}:`, error);
       }
     );
   }
+  // Função para obter o resultado com base no código
+  private obterResultado(codigoResultado: number): string {
+    if (codigoResultado === 1) {
+      return 'Aprovado';
+    } else if (codigoResultado === 2) {
+      return 'Reprovado';
+    } else {
+      return 'Indefinido';
+    } 
+  }
+
+  toggleTabela() {
+    this.mostrarTabelaDetalhada = !this.mostrarTabelaDetalhada;
+  }
+
+  filtrarDetalhes(row: NotasResumidasList) {
+
+    this.clickedRow = row;
+
+    this.filteredNotasDetalhadas = this.NotasDetalhadas.filter(det => det.Disciplina === row.ID);
+
+    if (this.filteredNotasDetalhadas.length === 0) {
+      this.mostrarTabelaDetalhada = false;
+    } else {
+      this.mostrarTabelaDetalhada = true;
+    }
+
+    console.log('Disciplina clicada:', row.Disciplina); // Mensagem de log para verificar
+  }
+
+  isRowSelected(row: NotasResumidasList) {
+    return this.clickedRow === row;
+  }
+  
 }
