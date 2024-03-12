@@ -3,17 +3,17 @@
     <div class="row">
       <div class="col-md-12">
         <mat-form-field appearance="outline" class="custom-dropdown">
-          <mat-label>Filtrar por Semestre</mat-label>
-          <mat-select #filtroDisciplinas (selectionChange)="filtrarPorDisciplina($event)">
-            <mat-option>-- Selecionar Disciplina --</mat-option>
-            <mat-option *ngFor="let semestre of semestres.result" [value]="semestre.id">
-              {{ semestre.nome }}
-            </mat-option>
-          </mat-select>
-          <button mat-button *ngIf="filtroDisciplinas.value" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
+        <mat-label>Filtrar por Semestre</mat-label>
+        <mat-select #filtroDisciplinas (selectionChange)="filtrarPorDisciplina($event)">
+          <mat-option>-- Selecionar Disciplina --</mat-option>
+          <mat-option *ngFor="let semestre of semestres.result" [value]="semestre.id">
+            {{ semestre.nome }}
+          </mat-option>
+        </mat-select>
+        <button mat-button *ngIf="filtroDisciplinas.value" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
         <div class="card">
           <div class="card-header card-header-rose">
             <h4 class="card-title">Notas Siga</h4>

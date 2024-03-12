@@ -51,6 +51,9 @@ export class TableListComponent implements OnInit {
   private carregaSemestre() {
     this.notasListService.getSemestres(this.idAluno, this.CursoID).subscribe(
       (data: Semestres) => {
+        // Ordenar os semestres pelo nome
+        data.result.sort((a, b) => a.nome.localeCompare(b.nome));
+
         this.semestres = data;
         console.log('Semestres:', this.semestres); // Mostra o objeto Semestres completo no console
   
