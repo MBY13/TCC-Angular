@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
+import { TableListComponent } from '../../notas-list/notas-list.component';
 import { IntegracoesComponent } from '../../integracoes/integracoes.component';
 import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-integracao/card-integracao.component';
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
 import { MatTableModule } from '@angular/material/table';
+import { NotasListService } from 'app/notas-list/notas-list.service';
 
 @NgModule({
   imports: [
@@ -51,7 +52,7 @@ import { MatTableModule } from '@angular/material/table';
     NotificationsComponent,
     UpgradeComponent,
   ],
-  providers: [DashboardService, IntegracoesService]
+  providers: [DashboardService, IntegracoesService,NotasListService]
 })
 
 export class AdminLayoutModule {}

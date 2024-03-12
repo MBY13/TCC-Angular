@@ -11,3 +11,10 @@ th, td {
 .selected-row {
   font-weight: bold;
 }
+
+.custom-dropdown {
+  width: 200px; /* Defina o tamanho desejado para o dropdown */
+  margin-bottom: 10px; /* Adicione margem inferior para espaçamento */
+  z-index: 1000;
+  padding-top: 40px;
+}
