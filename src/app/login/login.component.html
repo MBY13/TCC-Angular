@@ -15,8 +15,8 @@
           </mat-form-field>
   
           <button mat-raised-button color="primary" type="submit" class="login-button">Login</button>
-          <button mat-button color="warn" class="forgot-password">Esqueceu a Senha</button>
-          <button mat-button color="accent" class="create-account">Criar Cadastro</button>
+          <button mat-button color="warn" routerLink="/forgot-password">Esqueceu a Senha</button>
+          <button mat-button color="accent" routerLink="/create-account">Criar Cadastro</button>          
           
           <div *ngIf="erroLogin" class="error-message">
             Login ou senha inválidos.

@@ -52,7 +52,7 @@ export interface Disciplina {
       tipoTarefa: number;
       id: string;
     }[];
-    resultado: number;
+    resultado: string;
     id: string;
   }[];
   id: number;

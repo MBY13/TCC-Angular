@@ -79,7 +79,7 @@ export class TableListComponent implements OnInit {
             Disciplina: disciplina.nome,
             Nota: disciplina.media,
             Frequencia: disciplina.frequencia,
-            Resultado: this.obterResultado(disciplina.resultado), // Função para obter o resultado com base no código
+            Resultado: disciplina.resultado, // Função para obter o resultado com base no código
             ID_Semestre: semestreId
           };
 
