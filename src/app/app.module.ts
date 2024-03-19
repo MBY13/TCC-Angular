@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
 import { CriarCadastroComponent } from './criar-cadastro/criar-cadastro.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -51,13 +52,11 @@ const routes: Routes = [
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
-    RecuperarSenhaComponent,
-    CriarCadastroComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
