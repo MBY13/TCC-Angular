@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CriarCadastroService } from './criar-cadastro.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar-cadastro',
@@ -20,7 +21,7 @@ export class CriarCadastroComponent implements OnInit{
   dobString: string; // Nova propriedade para armazenar a data como string
   dataFormatada: string;
 
-  constructor(private criarCadastroService: CriarCadastroService, private snackBar: MatSnackBar,private datePipe: DatePipe) { }
+  constructor(private criarCadastroService: CriarCadastroService, private snackBar: MatSnackBar,private datePipe: DatePipe,private router: Router,) { }
   // private criarCadastroService: CriarCadastroService, private snackBar: MatSnackBar
   ngOnInit() {
   }
@@ -42,6 +43,7 @@ export class CriarCadastroComponent implements OnInit{
         console.log(response)
         if (response.statusCode == 201) {
           this.snackBar.open('Dados inseridos com sucesso', 'Fechar', { duration: 3000 });
+          this.router.navigate(['/login']);
         } else {
           this.snackBar.open('Erro ao inserir dados', 'Fechar', { duration: 3000 });
         }
