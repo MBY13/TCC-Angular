@@ -13,7 +13,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
@@ -24,6 +24,14 @@ import { CardIntegracaoComponent } from 'app/integracoes/card-integracao/card-in
 import { IntegracoesService } from 'app/integracoes/integracoes.service';
 import { MatTableModule } from '@angular/material/table';
 import { NotasListService } from 'app/notas-list/notas-list.service';
+import { CriarCadastroComponent } from 'app/criar-cadastro/criar-cadastro.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { CriarCadastroService } from 'app/criar-cadastro/criar-cadastro.service';
+import { LoginComponent } from 'app/login/login.component';
+import { RecuperarSenhaComponent } from 'app/recuperar-senha/recuperar-senha.component';
+import { RecuperarSenhaService } from 'app/recuperar-senha/recuperar-senha.service';
+
 
 @NgModule({
   imports: [
@@ -40,6 +48,9 @@ import { NotasListService } from 'app/notas-list/notas-list.service';
     MatIconModule,
     MatSnackBarModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatNativeDateModule,
   ],
   declarations: [
     DashboardComponent,
@@ -51,8 +62,11 @@ import { NotasListService } from 'app/notas-list/notas-list.service';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    LoginComponent,
+    RecuperarSenhaComponent,
+    CriarCadastroComponent,
   ],
-  providers: [DashboardService, IntegracoesService,NotasListService]
+  providers: [DashboardService, IntegracoesService,NotasListService,CriarCadastroService,RecuperarSenhaService] 
 })
 
 export class AdminLayoutModule {}

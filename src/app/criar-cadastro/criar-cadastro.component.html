@@ -1,0 +1,49 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>BotU - Cadastro</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="submitRegistrationForm()" class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Nome de Usuário</mat-label>
+          <input matInput placeholder="Digite seu Nome Completo" name="username" [(ngModel)]="username">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Selecione a Data de Nascimento" [matDatepicker]="dobPicker" readonly [(ngModel)]="dob">
+          <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobPicker></mat-datepicker>
+        </mat-form-field>
+ 
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Digite seu Email" type="email" name="email" [(ngModel)]="email">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Login</mat-label>
+          <input matInput placeholder="Digite seu Login" name="login" [(ngModel)]="login">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua Senha" name="senha" [(ngModel)]="senha">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="hide ? 'Hide password' : 'Show password'">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit" class="register-button">Registrar</button>
+          <button mat-button color="accent" routerLink="/login">Voltar para o Login</button>
+        </div>
+
+        <div *ngIf="registrationError" class="error-message">
+          Erro ao registrar. Por favor, verifique seus dados.
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
