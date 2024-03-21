@@ -11,6 +11,7 @@ export class LoginComponent {
   login: string;
   senha: string;
   erroLogin: boolean = false;
+  hide: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) { }
 

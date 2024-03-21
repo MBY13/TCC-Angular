@@ -20,6 +20,7 @@ export class CriarCadastroComponent implements OnInit{
   registrationError: boolean = false;
   dobString: string; // Nova propriedade para armazenar a data como string
   dataFormatada: string;
+  hide: boolean = true;
 
   constructor(private criarCadastroService: CriarCadastroService, private snackBar: MatSnackBar,private datePipe: DatePipe,private router: Router,) { }
   // private criarCadastroService: CriarCadastroService, private snackBar: MatSnackBar

@@ -29,7 +29,10 @@
 
         <mat-form-field class="full-width">
           <mat-label>Senha</mat-label>
-          <input matInput type="password" placeholder="Digite sua Senha" name="senha" [(ngModel)]="senha">
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua Senha" name="senha" [(ngModel)]="senha">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="hide ? 'Hide password' : 'Show password'">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
         </mat-form-field>
 
         <div class="button-group">

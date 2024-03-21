@@ -18,6 +18,7 @@ export class RecuperarSenhaComponent implements OnInit {
   resetToken: string = '';
   erroEmail: string = '';
   emailenviado: boolean = false;
+  hide: boolean = true;
 
   constructor(private recuperarsenha: RecuperarSenhaService,private route: ActivatedRoute, private router: Router,private snackBar: MatSnackBar) {}
 

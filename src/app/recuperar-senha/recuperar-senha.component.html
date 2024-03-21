@@ -21,11 +21,14 @@
             </mat-form-field>
 
             <mat-form-field class="full-width">
-            <input matInput placeholder="Nova Senha" name="newPassword" [(ngModel)]="newPassword" required>
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Nova Senha" name="newPassword" [(ngModel)]="newPassword" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="hide ? 'Hide password' : 'Show password'">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
             </mat-form-field>
-    
+
             <mat-form-field class="full-width">
-            <input matInput placeholder="Token" name="resetToken" [(ngModel)]="resetToken" [disabled]="true">
+              <input matInput placeholder="Token" name="resetToken" [(ngModel)]="resetToken" [disabled]="true">
             </mat-form-field>
     
             <button mat-raised-button color="primary" type="submit" class="save-password-button">Salvar Nova Senha</button>
