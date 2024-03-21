@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CriarCadastroService } from 'app/criar-cadastro/criar-cadastro.service';
 import { LoginComponent } from 'app/login/login.component';
 import { RecuperarSenhaComponent } from 'app/recuperar-senha/recuperar-senha.component';
+import { RecuperarSenhaService } from 'app/recuperar-senha/recuperar-senha.service';
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import { RecuperarSenhaComponent } from 'app/recuperar-senha/recuperar-senha.com
     RecuperarSenhaComponent,
     CriarCadastroComponent,
   ],
-  providers: [DashboardService, IntegracoesService,NotasListService,CriarCadastroService] 
+  providers: [DashboardService, IntegracoesService,NotasListService,CriarCadastroService,RecuperarSenhaService] 
 })
 
 export class AdminLayoutModule {}

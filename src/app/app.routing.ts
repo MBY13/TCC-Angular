@@ -24,7 +24,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'forgot-password', component: RecuperarSenhaComponent },
+  { path: 'dashboard/redefinir-senha', component: RecuperarSenhaComponent },
   { path: 'create-account', component: CriarCadastroComponent },
 ];
 
