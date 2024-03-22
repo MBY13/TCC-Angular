@@ -37,7 +37,8 @@ export interface Semestres {
 }
 
 export interface Disciplina {
-  result: {
+  disciplinas: {
+    id: string;
     nome: string;
     professor: string;
     frequencia: number;
@@ -53,17 +54,8 @@ export interface Disciplina {
       id: string;
     }[];
     resultado: string;
-    id: string;
+    semestreId: string;
   }[];
-  id: number;
-  exception: any;
-  status: number;
-  isCanceled: boolean;
-  isCompleted: boolean;
-  isCompletedSuccessfully: boolean;
-  creationOptions: number;
-  asyncState: any;
-  isFaulted: boolean;
 }
 
 export interface NotasResumidasList {
