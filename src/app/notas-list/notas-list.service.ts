@@ -4,7 +4,9 @@ import { Observable, catchError, throwError } from "rxjs";
 import { Curso, Semestres, Disciplina } from './notas-list.models'; // Ajuste o caminho conforme necessário
 import { ApiRoutesHelpers } from "utils/api/api-routes.helpers";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class NotasListService {
     constructor(private http: HttpClient) { }
 
@@ -24,11 +26,22 @@ export class NotasListService {
         );
     }
 
-    getDisciplina(idAluno: string, idSemestre: string): Observable<Disciplina> {
-    const relativeRoute = '/Notas';
-    const endpoint: string = ApiRoutesHelpers.GetAbsoluteRoute(relativeRoute);
-    return this.http.get<Disciplina>(`${endpoint}/GetDisciplinas?AlunoId=${idAluno}&Semestre=${idSemestre}`).pipe(
-        catchError(error => throwError(error))
-        );
-    }
+    // getDisciplina(idSemestre: string): Observable<Disciplina> {
+    // const relativeRoute = '/Notas';
+    // const endpoint: string = ApiRoutesHelpers.GetAbsoluteRoute(relativeRoute);
+    // return this.http.get<Disciplina>(`${endpoint}/GetDisciplinas?semestreId=${idSemestre}`).pipe(
+    //     catchError(error => throwError(error))
+    //     );
+    // }
+    getDisciplina(idSemestre: string): Promise<Disciplina> {
+        const relativeRoute = '/Notas';
+        const endpoint: string = ApiRoutesHelpers.GetAbsoluteRoute(relativeRoute);
+        return this.http.get<Disciplina>(`${endpoint}/GetDisciplinas?semestreId=${idSemestre}`)
+          .pipe(
+            catchError(error => {
+              throw error;
+            })
+          )
+          .toPromise();
+      }
 }

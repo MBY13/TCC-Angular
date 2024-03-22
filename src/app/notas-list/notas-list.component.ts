@@ -68,47 +68,95 @@ export class TableListComponent implements OnInit {
       }
     );
   }
-  private getDisciplinas(semestreId: string) {
-    this.notasListService.getDisciplina(this.idAluno, semestreId).subscribe(
-      (data: Disciplina) => {
-        console.log(`Disciplinas do semestre ${semestreId}:`, data);
-        data.result.forEach((disciplina) => {
-          // Criando um objeto NotasResumidasList a partir dos dados da disciplina
-          const notaResumida: NotasResumidasList = {
-            ID: disciplina.id,
-            Disciplina: disciplina.nome,
-            Nota: disciplina.media,
-            Frequencia: disciplina.frequencia,
-            Resultado: disciplina.resultado, // Função para obter o resultado com base no código
-            ID_Semestre: semestreId
-          };
+  // private getDisciplinas(semestreId: string) {
+  //   this.notasListService.getDisciplina(semestreId).subscribe(
+  //     (data: Disciplina) => {
+  //       console.log(`Disciplinas do semestre ${semestreId}:`, data);
+  //       data.result.forEach((disciplina) => {
+  //         console.log(disciplina)
+  //         // Criando um objeto NotasResumidasList a partir dos dados da disciplina
+  //         const notaResumida: NotasResumidasList = {
+  //           ID: disciplina.id,
+  //           Disciplina: disciplina.nome,
+  //           Nota: disciplina.media,
+  //           Frequencia: disciplina.frequencia,
+  //           Resultado: disciplina.resultado, // Função para obter o resultado com base no código
+  //           ID_Semestre: semestreId
+  //         };
 
+  //       // Adicionando a nova nota à lista NotasResumidas
+  //       this.NotasResumidas.push(notaResumida);
+
+  //       disciplina.avaliacoes.forEach((avaliacao) => {
+  //        const notasDetalhadas: NotasDetalhadasList = {
+  //           ID: avaliacao.id,
+  //           Avaliacao: avaliacao.nome,
+  //           Data: avaliacao.dataEntrega,
+  //           Conteudo: avaliacao.conteudo,
+  //           Nota: avaliacao.nota,
+  //           Disciplina: disciplina.id
+  //        } 
+  //       this.NotasDetalhadas.push(notasDetalhadas)
+  //       });
+  //     });
+  //     this.dataSourceResumida.data = this.NotasResumidas;
+  //     console.log('NotasResumidas atualizadas:', this.NotasResumidas);
+
+  //     this.dataSourceDetalhada.data = this.NotasDetalhadas;
+  //     console.log('NotasDetalhadas atualizadas:', this.NotasDetalhadas);
+  //     },
+  //     (error) => {
+  //       console.error(`Erro ao obter Disciplinas do semestre ${semestreId}:`, error);
+  //     }
+  //   );
+  // }
+
+  private async getDisciplinas(semestreId: string) {
+    try {
+      const data: Disciplina = await this.notasListService.getDisciplina(semestreId);
+  
+      console.log(`Disciplinas do semestre ${semestreId}:`, data);
+      console.log(`TESTE ${semestreId}:`, data.disciplinas);
+      for (const disciplina of data.disciplinas) {
+        console.log(disciplina);
+  
+        // Criando um objeto NotasResumidasList a partir dos dados da disciplina
+        const notaResumida: NotasResumidasList = {
+          ID: disciplina.id,
+          Disciplina: disciplina.nome,
+          Nota: disciplina.media,
+          Frequencia: disciplina.frequencia,
+          Resultado: disciplina.resultado, // Função para obter o resultado com base no código
+          ID_Semestre: semestreId
+        };
+  
         // Adicionando a nova nota à lista NotasResumidas
         this.NotasResumidas.push(notaResumida);
-
-        disciplina.avaliacoes.forEach((avaliacao) => {
-         const notasDetalhadas: NotasDetalhadasList = {
+  
+        for (const avaliacao of disciplina.avaliacoes) {
+          const notasDetalhadas: NotasDetalhadasList = {
             ID: avaliacao.id,
             Avaliacao: avaliacao.nome,
             Data: avaliacao.dataEntrega,
             Conteudo: avaliacao.conteudo,
             Nota: avaliacao.nota,
             Disciplina: disciplina.id
-         } 
-        this.NotasDetalhadas.push(notasDetalhadas)
-        });
-      });
+          };
+  
+          this.NotasDetalhadas.push(notasDetalhadas);
+        }
+      }
+  
       this.dataSourceResumida.data = this.NotasResumidas;
       console.log('NotasResumidas atualizadas:', this.NotasResumidas);
-
+  
       this.dataSourceDetalhada.data = this.NotasDetalhadas;
       console.log('NotasDetalhadas atualizadas:', this.NotasDetalhadas);
-      },
-      (error) => {
-        console.error(`Erro ao obter Disciplinas do semestre ${semestreId}:`, error);
-      }
-    );
+    } catch (error) {
+      console.error(`Erro ao obter Disciplinas do semestre ${semestreId}:`, error);
+    }
   }
+  
   // Função para obter o resultado com base no código
   private obterResultado(codigoResultado: number): string {
     if (codigoResultado === 1) {
